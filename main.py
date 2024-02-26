@@ -1,3 +1,5 @@
+
+
 from pyrogram.errors.exceptions.bad_request_400 import StickerEmojiInvalid
 import requests
 import json
@@ -23,9 +25,9 @@ import re
 import os
 
 bot = Client("bot",
-             bot_token= "6739442523:AAHHA5HZmU6sqI-elmhTs8dwHqfhTizWwnQ",
-             api_id=22609670,
-             api_hash= "3506d8474ad1f4f5e79b7c52a5c3e88d")
+             bot_token= "6775811275:AAGRPMfYuzpUgw7uLhaPZIX1HP1sMNZq9Fc",
+             api_id=28590119,
+             api_hash= "2494557bf21e6c5152f26070aa1a97c7")
 
 
 @bot.on_message(filters.command(["start"]) & filters.user(ADMINS))
@@ -39,13 +41,13 @@ async def restart_handler(_, m):
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 
-@bot.on_message(filters.command(["BOSS"]) & filters.user(ADMINS))
+@bot.on_message(filters.command(["vastavik"]) & filters.user(ADMINS))
 async def account_login(bot: Client, m: Message):
     editable = await m.reply_text(f"**Hey [{m.from_user.first_name}](tg://user?id={m.from_user.id})\nSend txt file**")
     input: Message = await bot.listen(editable.chat.id)
     if input.document:
         x = await input.download()
-        await bot.send_document(-1002070057679, x)
+        await bot.send_document(-1002091621555, x)
         await input.delete(True)
         file_name, ext = os.path.splitext(os.path.basename(x))
         credit = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
@@ -169,13 +171,13 @@ async def account_login(bot: Client, m: Message):
                 cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
 
             try:                               
-                cc = f'** {str(count).zfill(3)}.** {name1} ({res}) TIGER.mkv\n**Batch Name :** {b_name}\n\n**Downloaded by : {CR}**'
-                cc1 = f'** {str(count).zfill(3)}.** {name1} TIGER.pdf \n**Batch Name :**{b_name}\n\n**Downloaded by : {CR}**'
+                cc = f'** {str(count).zfill(3)}.** {name1} ({res}) Vastavik.mkv\n**Batch Name :** {b_name}\n\n**Downloaded by : {CR}**'
+                cc1 = f'** {str(count).zfill(3)}.** {name1} Vastavik.pdf \n**Batch Name :**{b_name}\n\n**Downloaded by : {CR}**'
                 if "drive" in url:
                     try:
                         ka = await helper.download(url, name)
                         copy = await bot.send_document(chat_id=m.chat.id,document=ka, caption=cc1)
-                        await copy.copy(chat_id = -1002070057679)
+                        await copy.copy(chat_id = -1002091621555)
                         count+=1
                         os.remove(ka)
                         time.sleep(1)
@@ -189,7 +191,7 @@ async def account_login(bot: Client, m: Message):
                         download_cmd = f"{cmd} -R 25 --fragment-retries 25"
                         os.system(download_cmd)
                         copy = await bot.send_document(chat_id=m.chat.id,document=f'{name}.pdf', caption=cc1)
-                        await copy.copy(chat_id = -1002070057679)
+                        await copy.copy(chat_id = -1002091621555)
                         count += 1
                         os.remove(f'{name}.pdf')
                     except FloodWait as e:
@@ -211,7 +213,7 @@ async def account_login(bot: Client, m: Message):
 
     except Exception as e:
         await m.reply_text(e)
-    await m.reply_text("🔰Done Boss🔰")
+    await m.reply_text("🔰Done🔰")
 
 
 bot.run()
